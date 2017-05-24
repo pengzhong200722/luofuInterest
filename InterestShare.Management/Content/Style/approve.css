@@ -1,0 +1,82 @@
+﻿body {
+}
+
+.order-detail-ordercancelapprove {
+    font-family:'Microsoft YaHei UI';
+    padding: 10px;
+}
+
+    .order-detail-ordercancelapprove table {
+        width: 100%;
+        box-sizing: content-box;
+        text-align: left;
+        padding: 5px;
+        border-collapse: collapse;
+    }
+
+        .order-detail-ordercancelapprove table tr {
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .order-detail-ordercancelapprove table th {
+            text-align: left;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 5px;
+        }
+
+        .order-detail-ordercancelapprove table td {
+            padding: 5px;
+        }
+
+    .order-detail-ordercancelapprove > div {
+        margin-bottom: 20px;
+    }
+
+        .order-detail-ordercancelapprove > div:last-child {
+            margin-bottom: 0;
+        }
+
+    .order-detail-ordercancelapprove div .title {
+        font-size: 15px;
+        font-weight: bold;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 3px;
+        margin-bottom: 5px;
+    }
+    .order-detail-ordercancelapprove .inline {
+        padding:5px 0;
+    }
+    .order-detail-ordercancelapprove .inline div {
+        display: inline-block;
+        width: 49%;
+    }
+
+        .order-detail-ordercancelapprove .inline div span {
+            display: inline-block;
+        }
+
+            .order-detail-ordercancelapprove .inline div span:first-child {
+                width: 88px;
+                text-align: right;
+            }
+
+        .order-detail-ordercancelapprove .inline:only-of-type {
+            width:100%;
+        }
+    .order-detail-ordercancelapprove .approve-remark .title {
+        border: none;
+    }
+
+    .order-detail-ordercancelapprove .approve-remark textarea {
+        width: 80%;
+        height: 60px;
+    }
+
+.order-detail-ordercancelapprove .cancel-reason {
+    border:1px dashed orange;
+    padding:10px;
+}
+
+    .order-detail-ordercancelapprove .cancel-reason .title {
+        font-size: 13px;
+    }

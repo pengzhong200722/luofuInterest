@@ -1,0 +1,32 @@
+﻿
+<div style="position: absolute; right: 0px; bottom: 0px;">
+    <a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#layout_north_kzmbMenu',iconCls:'icon-config'" style="color:black">控制面板</a>
+    <a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#layout_north_pfMenu',iconCls:'icon-key'">更换皮肤</a>
+</div>
+
+<div id="layout_north_pfMenu" style="width: 120px; display: none;">
+    <div onclick="changeTheme('default');" title="default">default</div>
+    <div onclick="changeTheme('gray');" title="gray">gray</div>
+    <div onclick="changeTheme('bootstrap');" title="bootstrap">bootstrap</div>
+    <div onclick="changeTheme('metro');" title="metro">metro</div>
+    <div onclick="changeTheme('metro-blue');" title="metro-blue">metro-blue</div>
+    <div onclick="changeTheme('metro-gray');" title="metro-gray">metro-gray</div>
+    <div onclick="changeTheme('metro-green');" title="metro-green">metro-green</div>
+    <div onclick="changeTheme('metro-orange');" title="metro-orange">metro-orange</div>
+    <div onclick="changeTheme('metro-red');" title="metro-red">metro-red</div>
+</div>
+<div id="layout_north_kzmbMenu" style="width: 100px; display: none;">
+
+    <div onclick="exitSystem();" data-options="iconCls:'icon-redo'">退出系统</div>
+
+</div>
+
+@*<div style="float:left;height:38px;width:415px; background-image:url(../../Content/Image/logo_menu.png)"></div>*@
+<div style="position: absolute; right: 5px; top: 10px; font-size:13px;" id="div_welcom">
+    @*<div id="loginName" style="display:none">
+        <span>@helpers.sessions(x => x.LoginUserName)</span></div>
+        &nbsp;姓名:<span>@helpers.sessions(x => x.LoginName) </span>
+        &nbsp;帐号:<span>@helpers.sessions(x => x.LoginUserName)</span>
+        &nbsp;角色:<span>@helpers.sessions(x => x.RoleName) </span>*@
+</div>
+

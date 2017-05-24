@@ -1,0 +1,13 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+}
+<style>
+    body {
+        background-color: white;
+    }
+</style>
+
+<h1 class="text-danger">Error.</h1>
+<h2 class="text-danger" style="color:red;">错误信息：@ViewData["ErrorMessage"]</h2>

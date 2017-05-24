@@ -1,0 +1,106 @@
+﻿@model  InterestShare.Model.Models.ResourceModel
+@{
+    ViewBag.Title = "AddOrEditResource";
+}
+<style>
+    .linkCSS {
+        width:500px;
+    }
+    input, select, textarea {
+        max-width:500px;
+    }
+</style>
+<div class="easyui-layout" data-options="fit:true,border:false" style="height:300px">
+    <div data-options="region:'center',border:false" title="" style="overflow: hidden;">
+        <form id="form_BusinesSystem" method="post" action="/Resource/UpdateResource" class="form-horizontal" style="height:626px;overflow-y:scroll;overflow-x:hidden;">
+            @Html.HiddenFor(x => x.ID)
+            <table class="tableForm" style="width: 100%">
+                <tr>
+                    <td>资源名称：</td>
+                    <td>
+                        @Html.TextBoxFor(x => x.ResourceName, new { @class = "easyui-validatebox", data_options = "required:true", maxlength = 100 })
+                    </td>
+                </tr>
+                <tr>
+                    <td>资源提取码：</td>
+                    <td>
+                        @Html.TextBoxFor(x => x.ResourcePassword, new { @class = "easyui-validatebox", data_options = "required:true", maxlength = 100 })
+                    </td>
+                </tr>
+                <tr>
+                    <td>资源链接：</td>
+                    <td>
+                        @Html.TextBoxFor(x => x.ResourceLink, new { @class = "easyui-validatebox linkCSS", data_options = "required:false", maxlength = 300 })
+                    </td>
+                </tr>
+                <tr>
+                    <td>资源图片路径：</td>
+                    <td>
+                        @Html.TextBoxFor(x => x.ResourceImg, new { @class = "easyui-validatebox linkCSS", data_options = "required:false", maxlength = 300 })
+                    </td>
+                </tr>
+                <tr>
+                    <td>备注：</td>
+                    <td>
+                        @Html.TextBoxFor(x => x.Remark, new { @class = "easyui-validatebox", data_options = "required:false", maxlength = 100 })
+                    </td>
+                </tr>
+                <tr>
+                    <td>是否启用</td>
+                    <td>
+                        <div>
+                            <label>
+                                @Html.RadioButtonFor(model => model.IsEnable, true, new { @checked = true }) <span>启用 </span>
+                                @Html.RadioButtonFor(model => model.IsEnable, false, new { }) <span>不启用</span>
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(function () {
+        $('#form_BusinesSystem').form({
+            url: '@Url.Action("UpdateResource", "Resource")',
+            onSubmit: function () {
+                parent.$.messager.progress({
+                    title: '提示',
+                    text: '数据处理中，请稍后...'
+                });
+                var isValid = $(this).form('validate');
+                if ($.trim($("#ResourceName").val()) == '') {
+                    isValid = false;
+                    messager.info("提示", "资源名称不能全为空格！");
+                }
+                if (!isValid) {
+                    parent.$.messager.progress('close');
+                }
+                return isValid;
+            },
+            success: function (data) {
+                parent.$.messager.progress('close');
+                data = $.parseJSON(data);
+                if (data.isSuccess) {
+                    messager.info("提示", "保存成功！", parent.$.modalDialog.openner_dataGrid.reload);
+                    parent.$.modalDialog.handler.dialog('close');
+                } else {
+                    parent.$.messager.alert('错误', "保存失败，可能的原因：业务平台编码不能重复", 'error');
+                }
+            }
+
+        });
+        parent.$.messager.progress('close');
+    });
+
+</script>
+
+
+
+
+

@@ -1,0 +1,34 @@
+﻿body {
+}
+
+.facilities_wrap {
+    padding:8px 0;
+    }
+
+        .facilities_wrap .facility_type {
+            /*font-weight:bold;*/
+            margin-bottom:5px;
+            margin:0 0 5px 15px
+        }
+
+            .facilities_wrap .facility_type:last-child {
+                margin-bottom:0;            
+            }
+
+            .facilities_wrap .facility_type .facilities_typename {
+                float:left;
+            }
+
+            .facilities_wrap .facility_type .facilities {
+                float:left;
+                width:650px;
+            }
+
+                .facilities_wrap .facility_type .facilities label {
+                    display: inline-block;
+                    margin-left:20px;
+                }
+
+                    .facilities_wrap .facility_type .facilities label input[type='checkbox'] {
+                        margin:0;                    
+                    }

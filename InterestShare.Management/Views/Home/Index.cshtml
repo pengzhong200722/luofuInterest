@@ -1,0 +1,172 @@
+﻿@{
+    Layout = null;
+    var version = 1.0;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>电影资源共享管理平台</title>
+    <meta charset="utf-8" />
+
+    <link id="easyuiTheme" rel="stylesheet" href="~/Scripts/jquery-easyui-1.3.5/themes/default/easyui.css?v=@version" type="text/css">
+    <link href="/Content/default.css?v=@version" rel="stylesheet" />
+    <link href="/Content/site.css?v=@version" rel="stylesheet" />
+    <link href="/Content/icon.css?v=@version" rel="stylesheet" />
+    <link href="~/Content/KindEditor/themes/default/default.css?v=@version" rel="stylesheet" />
+    <link href="~/Content/Style/hotel.less?v=@version" rel="stylesheet" />
+
+    <script src="/Scripts/jquery-1.8.2.js?v=@version"></script>
+    <script src="/Scripts/jquery-extents.js?v=@version"></script>
+
+    <script src="/Scripts/jquery-easyui-1.3.5/jquery.easyui.js?v=@version"></script>
+    <script src="/Scripts/jquery-easyui-1.3.5/locale/easyui-lang-zh_CN.js?v=@version"></script>
+    <script src="/Scripts/jquery-easyui-1.3.5/jquery.easyui-extents.js?v=@version"></script>
+
+    <script src="/Scripts/jquery.json-2.4.js?v=@version"></script>
+
+    <script src="~/Content/KindEditor/kindeditor.js?v=@version"></script>
+    <script src="~/Content/KindEditor/plugins/image/image.js?v=@version"></script>
+    <script src="~/Content/KindEditor/lang/zh_CN.js?v=@version"></script>
+
+    <script src="~/Content/My97DatePicker/WdatePicker.js?v=@version"></script>
+    <script>
+        var esuiDialog = $.fn.dialog;
+    </script>
+    <script src="~/scripts/lhgdialog/lhgdialog.min.js?v=@version"></script>
+    <script>
+        $.fn.LhgDialog = $.fn.dialog;
+        $.fn.dialog = esuiDialog;
+    </script>
+
+    <link href="~/Content/webuploader-0.1.5/webuploader.css?v=@version" rel="stylesheet" />
+    <script src="~/Content/webuploader-0.1.5/webuploader.js?v=@version"></script>
+
+    <link href="~/Content/FullCalendar-1.5.4/fullcalendar.css?v=@version" rel="stylesheet" />
+    <link href="~/Content/FullCalendar-1.5.4/fullcalendar.print.css?v=@version" rel="stylesheet" />
+    <script src="~/Content/FullCalendar-1.5.4/fullcalendar.min.js?v=@version"></script>
+
+    <script src="~/Content/Javascript/common_fn.js?v=@version"></script>
+    <script src="~/Content/PageModule/System/global.js?v=@version"></script>
+    <script src="~/Content/PageModule/System/home.index.js?v=@version"></script>
+    <script src="~/Content/Javascript/jquery.selectpicture.js?v=@version"></script>
+    <script type="text/javascript">
+        var logoutPostUrl = '@Url.Action("Exit", "Account")';
+        var loginUrl = '@Url.Action("Login", "Account")';
+        var systemBaseUrl = '@Url.Content("~/").TrimEnd('/')';
+        var $captchaBaseUrl = '@Url.Action("Captcha", "Common")';
+        var $reloginViewUrl = '@Url.Action("GetReloginView", "Account")';
+        var $modifyPasswordViewUrl = '@Url.Action("GetModifyPasswordView", "Account")';
+    </script>
+
+    <script type="text/javascript">
+        var kindeditor;
+        KindEditor.ready(function (K) {
+            kindeditor = K;
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $(document).keydown(function (e) {
+                var keycode = window.event ? e.keyCode : e.which;
+                var ev = e || window.event;
+                var obj = ev.target || ev.srcElment;
+                var t = obj.type || obj.getAttribute('type');
+                if (event.keyCode == 8) {
+                    if (t == "password" || t == "text" || t == "textarea") {
+                        if (document.activeElement.readOnly == false)
+                            return true;
+                    }
+                    return false;
+                }
+            });
+        });
+    </script>
+</head>
+<body class="easyui-layout">
+    <noscript>
+        <div style="position: absolute; z-index: 100000; height: 2046px; top: 0px; left: 0px;width: 100%; background: white; text-align: center;">
+            <img src="/content/images/noscript.gif" alt='抱歉，请开启脚本支持！' />
+        </div>
+    </noscript>
+
+
+    <div data-options="region:'north',border:false" style="height: 60px;line-height:60px;
+    background-color: #E0ECFF;
+    background: linear-gradient(to right,#EFF5FF 20%,skyblue 70%);
+    background-repeat: repeat-x;  padding:10px;padding-left:20px; font:15px bold; font-family:黑体">
+        @Html.Partial("Index_TopPartial")
+    </div>
+
+    <div data-options="region:'south',border:false" style="overflow: hidden">
+        @Html.Partial("Index_BottomPartial")
+    </div>
+
+
+
+    <div data-options="region:'west',split:true,title:'功能导航',iconCls:'icon-home', href:'@Url.Action("IndexMenuView","Home")', onLoad: onMenuListLoad, loadingMessage:'正在加载...',tools:[{iconCls:'icon-refresh', handler:refreshMenuList }]" style="width: 250px;">
+    </div>
+
+    <div data-options="region:'center'" style="overflow: hidden;">
+        <div id="index_tabs" style="overflow: hidden;">
+            <div title="欢迎" data-options="border:false,iconCls:'icon-home'" style="overflow: hidden;">
+
+                <div class="gjbody">
+                    <div class="gjfrm">
+                        @(new HtmlString(ViewBag.StrMap))
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="index_tabsMenu" style="width: 120px; display: none;">
+        <div title="refresh" data-options="iconCls:'icon-reload'">刷新页面</div>
+        <div class="menu-sep"></div>
+        <div title="close" data-options="iconCls:'icon-close'">关闭当前</div>
+        <div title="closeOther" data-options="iconCls:'icon-close-all'">关闭其他</div>
+        <div title="closeAll" data-options="iconCls:'icon-close-all'">关闭所有</div>
+    </div>
+
+
+</body>
+</html>
+<style>
+    .cls {
+        width: 0;
+        height: 0;
+        overflow: hidden;
+        clear: both;
+    }
+
+    .gjbody {
+        /*background:url(../Content/Images/bg1.jpg) left top no-repeat #ebf2f9;*/
+    }
+
+    .gjfrm {
+        width: 1013px;
+        margin: 0 auto;
+    }
+
+    .gjtitle {
+        width: 1013px;
+        margin: 0 auto;
+        font-weight: bold;
+        font-size: 36px;
+        font-family: "微软雅黑";
+        color: #000;
+        line-height: 1.5;
+        padding-top: 30px;
+        margin-bottom: 40px;
+    }
+
+        .gjtitle span {
+            color: #378b02;
+            font-size: 40px;
+            font-family: "宋体";
+        }
+
+    .fc-event-hori {
+        border-width: 0 0 0px 0 !important;
+    }
+</style>

@@ -1,0 +1,262 @@
+﻿
+@{
+    ViewBag.Title = "ResourceIndex";
+}
+
+@section scripts{
+    <script type="text/javascript">
+        var grid = new DataGrid();
+
+        $(function () {
+
+            InitDataGrid($('#ResourceCheck').val(), $('#ResourceCodeCheck').val());
+
+            $('#btn_Query').click(function () {
+                InitDataGrid($('#ResourceCheck').val(), $('#ResourceCodeCheck').val());
+            })
+
+        });
+
+        function InitDataGrid(ResourceCheck, ResourceCodeCheck) {
+            grid = new DataGrid("#dataGrid", {
+                url: "/Resource/GetDataGridDataByCondition",
+                method: "GET",
+                queryParams: {
+                    name: ResourceCheck,
+                    code: ResourceCodeCheck,
+                },
+                columns: [
+                     {
+                         field: 'ID',
+                         title: 'ID',
+                         width: 50,
+                         checkbox: true
+                     },
+                    {
+                        field: 'ResourceName',
+                        title: '资源名称',
+                        width: 100,
+                    },
+                    {
+                        field: 'ResourcePassword',
+                        title: '资源提取码',
+                        width: 200
+                    },
+                    {
+                        field: 'ResourceLink',
+                        title: '资源下载链接',
+                        width: 200
+                    },
+                     {
+                         field: 'ResourceImg',
+                         title: '图片路径',
+                         width: 200
+                     },
+                    {
+                        field: 'IsEnable',
+                        title: '是否启用',
+                        width: 200
+                    },
+                 {
+                     field: 'Remark',
+                     title: '备注',
+                     width: 200
+                 },
+
+                ],
+                toolbar: "#toolbar",
+                onDblClickRow: function (rowIndex, rowData) {
+                    return edit(rowData.ID);
+                },
+                loadFilter: function (data) {
+                    if (data.isSuccess) {
+                        return {
+                            rows: data.obj.Items,
+                            total: data.obj.TotalNum
+                        };
+                    }
+                },
+            });
+
+        }
+
+        function newIframe(url, title) {
+            parent.newIframe(url, title);
+        }
+
+        function refresh() {
+            grid.reload();
+        };
+
+        function edit(id) {
+            if (id) {
+                grid.selectRecord(id);
+            }
+
+            var row = grid.getCheckedRow();
+            if (!row) {
+                return;
+            }
+            showEditView(row.ID, "修改资源 ");
+        };
+
+        function add() {
+            showEditView(null, "添加资源");
+        };
+
+        function showEditView(id, title) {
+            var param;
+            var winWidth = $(window.top).width();
+            var popHeight = winWidth < 1440 ? 600 : 800;
+            if (id) {
+                param = "?id=" + id;
+            }
+            var href = "/Resource/AddOrEditResource";
+            parent.$.modalDialog.openner_dataGrid = grid;
+            parent.$.modalDialog({
+                title: title,
+                width: 660,
+                height: 300,
+                href: href + (param || ""),
+                buttons: [
+                  {
+                      text: '确定',
+                      iconCls: 'icon-save',
+                      handler: function () {
+                          //var sentdata = { ID: $("#ID").val(), Resource: $("#Resource").val(), ResourceCode: $("#ResourceCode").val(), Remark: $("#Remark").val(), IsEnable: $("#IsEnable:checked").val(),
+                          //    PrefixCode: $("#PrefixCode").val()
+                          //};
+                          //$.ajax({
+                          //    type: "POST",
+                          //    url: "/Resource/UpdateResource",
+                          //    data: sentdata,
+                          //    success: function (data) {
+                          //        if (data > 0) {
+                          //            messager.info("提示", "保存成功！", grid.reload);
+                          //            return parent.$.modalDialog.handler.dialog('close');
+                          //        }
+                          //        else {
+                          //            messager.info("提示", "保存失败！");
+                          //        }
+                          //    }
+                          //});
+
+                          var frm;
+                          frm = parent.$.modalDialog.handler.find('#form_BusinesSystem');
+                          console.log(frm);
+                          if (frm) {
+                              return frm.submit();
+                          }
+
+                      }
+                  }, {
+                      text: '取消',
+                      iconCls: 'icon-cancel',
+                      handler: function () {
+                          return parent.$.modalDialog.handler.dialog('close');
+                      }
+                  }
+                ],
+                onLoad: function () {
+                    var $form = parent.$.modalDialog.handler.find('#form');
+                    utils.wrapForm($form, "", function (record) {
+                        if (!record.IsSuccess) {
+                            messager.info('提示', record.Message, grid.reload);
+                        }
+                        else {
+                            messager.info("提示", "保存成功！", grid.reload);
+                        }
+                    });
+                }
+            });
+        }
+
+        function del(id) {
+            if (id) {
+                grid.selectRecord(id);
+            }
+
+            var row = grid.getCheckedRow();
+            if (!row) {
+                return;
+            }
+            var deleteUrl = "/Resource/DeleteResource";
+            $.messager.confirm("提示", "你确定要删除吗", function (result) {
+                if (result) {
+                    $.post(deleteUrl, { id: row.ID }, function (response) {
+                        if (response > 0) {
+                            grid.reload();
+                        }
+                        else {
+                            messager.error("错误", response);
+                        }
+
+                        messager.progress.hide();
+                    });
+                }
+            });
+        };
+
+        function clearSelections() {
+            grid.clearSelections();
+        }
+    </script>
+}
+
+<div class="easyui-layout" data-options="fit:true,border:false">
+    <div data-options="region:'north',border:false" class="search-bar">
+        <table>
+            <tr>
+                <td class="label">资源名称：</td>
+                <td class="control">
+                    <input type="text" id="ResourceCheck" class="easyui-validatebox" />
+                </td>
+                <td>
+                    <a href="javascript:void(0);" id="btn_Query" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">查询</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div data-options="region:'center',border:false">
+        <table id="dataGrid"></table>
+    </div>
+</div>
+<div id="toolbar">
+    <table>
+        <tr>
+            <td>
+                <a onclick="add();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">添加</a>
+            </td>
+            <td>
+                <div class="datagrid-btn-separator"></div>
+            </td>
+            <td>
+                <a onclick="edit();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'">修改</a>
+            </td>
+            <td>
+                <div class="datagrid-btn-separator"></div>
+            </td>
+            <td>
+                <a onclick="refresh();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-reload'">刷新</a>
+            </td>
+            <td>
+                <a onclick="clearSelections();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-undo'">取消选择</a>
+            </td>
+            <td>
+                <a onclick="del();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-remove'">删除</a>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+
+<!--右键菜单-->
+<div id="menu" class="easyui-menu" style="width: 120px; display: none;">
+    <div onclick="edit();" data-options="iconCls:'icon-edit'">修改</div>
+    <div onclick="del();" data-options="iconCls:'icon-remove'">删除</div>
+    <div onclick="add();" data-options="iconCls:'icon-add'">添加</div>
+    <div class="menu-sep"></div>
+    <div onclick="refresh();" data-options="iconCls:'icon-reload'">刷新</div>
+</div>
+
+

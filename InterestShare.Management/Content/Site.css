@@ -1,0 +1,212 @@
+﻿body, td, th {
+    /* font-size: 14px;*/
+    font-family: 'Microsoft YaHei';
+}
+
+.index-top {
+    background: url('Login/logo.png') left center no-repeat white;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+    .index-top a.l-btn {
+        color: #FFFFFF;
+    }
+
+    .index-top a.l-btn-plain:hover {
+        color: #00438a;
+    }
+
+.left-menus {
+    padding-top: 3px;
+}
+
+    .left-menus div.tree-node {
+        padding: 6px 0;
+        margin-top: 4px;
+        padding-left: 11px;
+    }
+
+.row-img-button {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    vertical-align: middle;
+    cursor: pointer;
+    padding: 0 2px;
+}
+
+input.Wdate {
+    cursor: pointer;
+}
+
+.form-search input, .form-inline input, .form-horizontal input, .form-search textarea, .form-inline textarea, .form-horizontal textarea, .form-search select, .form-inline select, .form-horizontal select, .form-search .help-inline, .form-inline .help-inline, .form-horizontal .help-inline, .form-search .uneditable-input, .form-inline .uneditable-input, .form-horizontal .uneditable-input, .form-search .input-prepend, .form-inline .input-prepend, .form-horizontal .input-prepend, .form-search .input-append, .form-inline .input-append, .form-horizontal .input-append {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+    font-size: 12px;
+}
+
+.heading {
+    border-bottom: 1px solid #ddd;
+    font-size: 15px;
+    font-weight: bold;
+    padding-top: 5px;
+    padding: 2px 0 0 18px;
+    color: #1265be;
+    background: url('icons/item.png') no-repeat left center;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+    .heading.expanded {
+        background: url('icons/bullet_minus.png') no-repeat left center;
+    }
+
+.margin-bottom-5px {
+    margin-bottom: 5px;
+}
+
+.icon-redo {
+    background: url('icons/redo.png') no-repeat center center;
+}
+
+.Util_ChoseArea:not(.validatebox-invalid) {
+    cursor: pointer;
+    background: url('icons/magnifier.png') no-repeat right center;
+    border: 1px solid rgba(90, 83, 83, 0.53);
+}
+
+.form-horizontal {
+    padding: 6px;
+}
+
+label {
+    cursor: pointer;
+}
+
+input[type=checkbox], input[type=radio] {
+    margin: 0;
+}
+
+.table {
+    width: 100%;
+}
+
+    .table thead tr {
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    .table td {
+        padding: 5px;
+    }
+
+.table-border {
+    border-collapse: collapse;
+}
+
+    .table-border td {
+        border: 1px solid #ccc;
+    }
+
+.text-center {
+    text-align: center;
+}
+
+.o_label {
+    display: inline-block;
+    border-bottom: 1px solid transparent;
+    _border-bottom: 0;
+    cursor: pointer;
+    font-size: 12px;
+    margin-right: 10px;
+    white-space: nowrap;
+    padding: 2px 5px;
+}
+
+input.small {
+    width: 50px;
+}
+
+input.large {
+    width: 400px;
+}
+
+.RatePlanDateFilter {
+    color: blue;
+    text-decoration: underline;
+}
+
+.search-bar {
+    padding: 5px !important;
+    box-sizing: border-box;
+    margin-right: 0 !important;
+    width: 100% !important;
+    border: none;
+    overflow-y: hidden !important;
+}
+
+    .search-bar .control > input[type=text] {
+        width: 150px;
+        padding: 3px 2px;
+        border: 1px solid #ccc;
+    }
+
+    .search-bar .control .combo {
+        width: 154px !important;
+    }
+
+        .search-bar .control .combo .combo-text {
+            width: 132px !important;
+        }
+
+    .search-bar select {
+        border: 1px solid #ccc;
+        padding: 1px 2px;
+        width: 156px;
+    }
+
+    .search-bar table {
+        width: 100%;
+    }
+
+        .search-bar table .label {
+            word-break: keep-all;
+            width: 40px;
+        }
+
+        .search-bar table .control {
+            width: 160px;
+        }
+
+.fileName {
+    color: crimson;
+    font-weight: bold;
+    width: 350px;
+}
+
+.fileName_info {
+    color: darkorange;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+#div_fileQueue td.nobottom {
+    text-align: left;
+    border: 0px;
+    padding: 5px;
+}
+
+a {
+    color: blue;
+}
+
+/*
+    修改easyui 默认控件样式
+*/
+.pagination-num {
+    width: 4em !important;
+}

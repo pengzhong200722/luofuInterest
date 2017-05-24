@@ -1,0 +1,54 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <link rel="stylesheet" href="~/Scripts/jquery-easyui-1.3.5/themes/default/easyui.css" type="text/css" />
+
+    @*<link rel="stylesheet" href="~/Scripts/jquery-easyui-1.3.5/themes/black/easyui.css" type="text/css" />*@
+
+    <link href="~/Content/default.css" rel="stylesheet" />
+    <link href="~/Content/site.css" rel="stylesheet" />
+    <link href="~/Content/icon.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-1.8.2.js"></script>
+    <script src="~/Scripts/jquery-extents.js"></script>
+    <script src="~/Scripts/jquery.json-2.4.js"></script>
+
+    <script src="~/Scripts/jquery-easyui-1.3.5/jquery.easyui.js"></script>
+    <script src="~/Scripts/jquery-easyui-1.3.5/locale/easyui-lang-zh_CN.js"></script>
+    <script src="~/Scripts/jquery-easyui-1.3.5/jquery.easyui-extents.js"></script>
+    <script src="~/Content/PageModule/System/global.js"></script>
+    <script src="~/Content/PageModule/System/global.js"></script>
+</head>
+<body>
+
+    @RenderBody()
+    <style>
+        .datagrid-header-rownumber, .datagrid-cell-rownumber {
+            width: 40px;
+        }
+    </style>
+    <fieldset style="width: 100%; display: none;">
+        <legend>页脚</legend>
+        <div id='myfooter'>
+            <p style='text-align: center; font-size: smaller;'>#p </p>
+        </div>
+    </fieldset>
+
+
+
+
+    <script type="text/javascript">
+        var $systemBaseUrl = '@Url.Content("~/").TrimEnd('/')';
+        $.ajaxSettings.traditional = true;
+    </script>
+    @RenderSection("scripts", required: false)
+
+
+
+</body>
+</html>

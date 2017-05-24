@@ -1,0 +1,28 @@
+﻿
+<div class="easyui-accordion" data-options="fit:true,border:false">
+
+    @{
+        var groupIds = ViewData["MenuGroup"] as List<InterestShare.Management.Models.MenuGroupViewModel>;
+        var menuDetails = ViewData["MenuDetails"] as List<InterestShare.Management.Models.MenuViewModel>;
+    }
+
+    @if (groupIds != null)
+    {
+        foreach (var groupitem in groupIds)
+        {
+            <div title="@groupitem.GroupName" data-options="border:false,iconCls:'icon-folder'" class="left-menus">
+                @{
+                    var menus = menuDetails.Where(x => x.MenuGroupID == groupitem.GroupID).OrderBy(x => x.Sort).ToList();
+                    foreach (var menu in menus)
+                    {
+                        <div class="tree-node" style="cursor: pointer;">
+                            <span class="icon-ok" style="width:16px;height:16px; display:inline-block;vertical-align:middle;"></span>
+                            <span class="tree-title">@menu.MenuName</span>
+                            <span class="href" style="display: none;">@menu.Url</span>
+                        </div>
+                    }
+                }
+            </div>
+                        }
+                    }
+</div>

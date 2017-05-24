@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    var tips = Model;
+}
+
+<style>
+    .content {
+        text-align: center;
+        margin-top: 220px;
+        font-size: 16px;
+    }
+
+    .submitcss {
+        margin-top: 20px;
+    }
+</style>
+<div style="width:600px;height:600px; margin:auto;  ">
+    <div class="content">
+        <form id="ff" method="post" action="/Account/DoLogin">
+            <div style="font-size:20px;">
+                @*<img src="~/Content/Image/logo_menu_Center.png" />*@
+            </div>
+            <br />
+            <br />
+            <div style="margin-bottom:10px;">
+                <label for="name">用户:</label>
+                <input class="easyui-validatebox" type="text" name="name" required="true"></input>
+            </div>
+            <br />
+            <div>
+                <label for="email">密码:</label>
+                <input class="easyui-validatebox" type="password" name="password" required="true"></input>
+            </div>
+            <div class="wrongAccount">
+                @if (tips != null)
+                {
+                    <span style="font-size:14px;color:red;">用户名或密码错误</span>
+                }
+            </div>
+            <div class="submitcss">
+                <input type="submit" value="登陆">
+            </div>
+        </form>
+    </div>
+</div>

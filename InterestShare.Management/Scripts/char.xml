@@ -1,0 +1,28 @@
+<!-- <chart caption="系统日志统计" xAxisName="用户" yAxisName="次数" showValues="0" palette="2" shownames="1" legendBorderAlpha="0" useRoundEdges="1"
+animation="1" decimalPrecision="0" formatNumberScale="0" baseFont="Arial" baseFontSize="12" rotateYAxisName='0' showFCMenuItem="0"> -->
+<chart caption="XXXXXX统计" subcaption="2009年" xAxisName="月份" yAxisName="销售额" yAxisMinValue="15000" numberPrefix="￥" showValues="0" alternateHGridColor="FCB541" alternateHGridAlpha="20" divLineColor="FCB541" divLineAlpha="50" canvasBorderColor="666666" baseFontColor="666666" lineColor="FCB541" baseFont="Arial" baseFontSize="13" rotateYAxisName='0' showFCMenuItem="0" chartRightMargin='50'>
+	<set label="一月" value="17400" />
+	<set label="二月" value="19800" />
+	<set label="三月" value="21800" />
+	<set label="四月" value="23800" />
+	<set label="五月" value="29600" />
+	<set label="六月" value="27600" />
+	<set label="七月" value="31800" />
+	<set label="八月" value="39700" />
+	<set label="九月" value="37800" />
+	<set label="十月" value="21900" />
+	<set label="十一月" value="32900" />
+	<set label="十二月" value="39800" />
+	<styles>
+		 <definition>
+			<style name="Anim1" type="animation" param="_xscale" start="0" duration="1" />
+			<style name="Anim2" type="animation" param="_alpha" start="0" duration="0.6" />
+			<style name="DataShadow" type="Shadow" alpha="40" />
+		</definition>
+		<application>
+			<apply toObject="DIVLINES" styles="Anim1" />
+			<apply toObject="HGRID" styles="Anim2" />
+			<apply toObject="DATALABELS" styles="DataShadow,Anim2" />
+		</application>
+	</styles>
+</chart>
