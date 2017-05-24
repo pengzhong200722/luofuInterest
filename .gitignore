@@ -28,3 +28,5 @@ obj/
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*
+InterestShare.Management/Config/AppSettings.config
+InterestShare.Management/Config/ConnectionStrings.config
